@@ -9,14 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: who-am-i action
-        uses: microsoft/powerplatform-actions/who-am-i@v0.6.3
+        uses: microsoft/powerplatform-actions/who-am-i@v1
         with:
             environment-url: ${{ secrets.ENVIRONMENT_URL }}
             app-id: ${{ secrets.POWERPLATFORM_APPID }}
             client-secret: ${{ secrets.POWERPLATFORM_CLIENTSECRET }}
             tenant-id: ${{ secrets.TENANT_ID }}
       - name: export-solution action
-        uses: microsoft/powerplatform-actions/export-solution@v0.6.3
+        uses: microsoft/powerplatform-actions/export-solution@v1
         with:
             managed: false
             environment-url: ${{ secrets.ENVIRONMENT_URL }}
@@ -26,14 +26,14 @@ jobs:
             solution-name: ${{ secrets.SOLUTION_NAME }}
             solution-output-file: bin/${{ secrets.SOLUTION_NAME }}.zip
       - name: unpack-solution action
-        uses: microsoft/powerplatform-actions/unpack-solution@v0.6.3
+        uses: microsoft/powerplatform-actions/unpack-solution@v1
         with:
           solution-file: bin/${{ secrets.SOLUTION_NAME }}.zip
           solution-folder: out/${{ secrets.SOLUTION_NAME }}
           solution-type: 'Unmanaged'
           overwrite-files: true
       - name: branch-solution, prepare it for a PullRequest
-        uses: microsoft/powerplatform-actions/branch-solution@v0.6.3
+        uses: microsoft/powerplatform-actions/branch-solution@v1
         with:
           solution-folder: out/${{ secrets.SOLUTION_NAME }}
           solution-target-folder: ${{ secrets.SOLUTION_NAME }}
